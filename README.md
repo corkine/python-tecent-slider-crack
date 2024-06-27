@@ -9,10 +9,10 @@
 参考项目：https://github.com/shuxue051/captcha_crack
 ## 安装python环境
 
-参考：https://janikarhunen.fi/how-to-install-python-3-6-1-on-centos-7
+参考：https://www.rosehosting.com/blog/how-to-install-python-3-6-4-on-centos-7
 
 ``` shell script
-sudo yum install https://centos7.iuscommunity.org/ius-release.rpm
+sudo yum install -y https://repo.ius.io/ius-release-el7.rpm
 sudo yum install python36u
 python3.6 -V
 sudo yum install python36u-pip
@@ -26,7 +26,7 @@ python3.6 -m venv venv
 . venv/bin/activate
 pip install [package_name]
 # 安装依赖
-pip install -r requirements.txt 
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 ## daemonize 运行
 
@@ -53,7 +53,9 @@ uwsgi --ini /usr/local/nginx/html/myblog/uwsgiconfig.ini --daemonize /usr/local/
 
 ```
 
-# 是用nginx做代理
+> 如果不想使用 uwsgi，而只需要通过 flask 使用服务，修改 server.py 在 0.0.0.0 监听即可远程访问：`app.run(host='0.0.0.0', port=5000)`。
+
+# 用nginx做代理
 
 在nginx部分做一个代理
 ``` text
